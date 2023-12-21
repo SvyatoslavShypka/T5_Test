@@ -14,7 +14,8 @@ CTree::CTree()
 }
 
 CTree::CTree(const CTree& other) {
-    root = other.root;
+    root = new CNode(*other.root);
+
     cout << "Copy constructor " << endl;
     //GLOBAL_CONSTRUCTOR_COPY_COUNTER++;
 }
@@ -23,6 +24,7 @@ CTree::~CTree() {
     cout << "Destructor " << endl;
     if (root != nullptr) {
     deleteTree(root);
+    root = nullptr;
     }
 }
 
@@ -33,11 +35,22 @@ CNode* CTree::getRoot() const {
 CTree& CTree::operator=(const CTree& other) {
     if (this != &other) {
         cout << "operator= " << endl;
-        deleteTree(root);
+        if (root != nullptr) {
+            deleteTree(root);
+        }
         root = copyTree(other.root);
     }
     return *this;
 }
+
+CTree CTree::operator=(CTree&& other) {
+    cout << "Move operator= " << endl;
+    if (root != nullptr) delete root;
+    root = other.root;
+    //delete other.root;
+    //other.root = NULL;
+    return(*this);
+};
 
 // Funkcja do wypisywania drzewa w notacji prefiksowej
 void CTree::printTree(CNode* node) {
@@ -249,6 +262,7 @@ CTree CTree::operator+(const CTree& other) {
     CTree result(*this);
 
     result.root = mergeTrees(root, other.root);
+    root = nullptr;
     
     return move(result);
 }

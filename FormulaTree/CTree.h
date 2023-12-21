@@ -36,16 +36,7 @@ public:
     CNode* getRoot() const;
 
     CTree& operator=(const CTree& other);
-    CTree operator=(CTree&& other) {
-        //cout << "Move operator= " << ++i_copyCount << endl;
-        cout << "Move operator= " << endl;
-        if (root != nullptr) delete root;
-        root = other.root;
-        //delete other.root;
-        //other.root = NULL;
-        return(*this);
-    };
-    //CTree& operator+=(const CTree& other);
+    CTree operator=(CTree&& other);
     CTree operator+(const CTree& other);
 
     void createTree(CNode* currentNode, const string& expression, size_t& offset);

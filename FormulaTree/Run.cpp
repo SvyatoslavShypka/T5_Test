@@ -100,6 +100,7 @@ int main() {
             newTree.parseExpression(formula);
             //tree += newTree;
             tree = tree + newTree;
+            //newTree = nullptr;
             cout << message_merged_tree << endl;
         }
         else if (cmd == command_exit) {

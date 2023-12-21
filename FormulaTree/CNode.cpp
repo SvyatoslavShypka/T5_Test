@@ -9,6 +9,13 @@ CNode::CNode(string val)
     isClosed = false;
 }
 
+CNode::CNode(const CNode& other) {
+    value = other.value;
+    for (size_t i = 0; i < other.children.size(); i++) {
+        children.push_back(new CNode(*other.children[i]));
+    }
+}
+
 CNode* CNode::operator+(CNode* other) {
     CNode* newNode = new CNode(op_plus);
     newNode->children.push_back(this);

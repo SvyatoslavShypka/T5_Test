@@ -12,6 +12,8 @@ public:
     bool isClosed;
 
     CNode(string val);
+    CNode(const CNode& other);
+
     CNode* operator+(CNode* other);
     bool isVariable() const;
     bool isNumber() const;
