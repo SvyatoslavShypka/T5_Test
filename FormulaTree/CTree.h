@@ -31,7 +31,7 @@ public:
     CNode* getRoot() const;
 
     void operator=(const CTree& other);
-    //void operator=(CTree&& other);
+    void operator=(CTree&& other);
     CTree operator+(const CTree& other);
 
     void createTree(CNode* currentNode, const string& expression, size_t& offset);

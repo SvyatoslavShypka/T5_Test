@@ -51,10 +51,10 @@ void CTree::operator=(const CTree& other) {
     cout << message_operatorEqual << ++copyCountOperatorEqual << endl;
 }
 
-//void CTree::operator=(CTree&& other) {
-//    if (root != nullptr) deleteTree(root);
-//    root = copyTree(other.root);
-//};
+void CTree::operator=(CTree&& other) {
+    if (root != nullptr) deleteTree(root);
+    root = copyTree(other.root);
+};
 
 // Funkcja do wypisywania drzewa w notacji prefiksowej
 void CTree::printTree(CNode* node) {
