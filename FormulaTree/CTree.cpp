@@ -7,28 +7,23 @@
 #include <queue>
 using namespace std;
 
-int copyCountCopyConstructor = 0;
-int copyCountOperatorEqual = 0;
+int CTree::copyCountCopyConstructor = 0;
+int CTree::copyCountOperatorEqual = 0;
 
 CTree::CTree()
 {
-    cout << "Default constructor " << endl;
     root = nullptr;
 }
 
 CTree::CTree(const CTree& other) {
     root = new CNode(*other.root);
 
-    cout << "Copy constructor " << endl;
-    copyCountCopyConstructor++;
-    //GLOBAL_CONSTRUCTOR_COPY_COUNTER++;
-}
+    cout << message_copy_constructor << ++copyCountCopyConstructor << endl;
+};
 
 CTree::~CTree() {
-    cout << "Destructor " << endl;
     if (root != nullptr) {
     deleteTree(root);
-    //root = nullptr;
     }
 }
 
@@ -48,20 +43,18 @@ CTree CTree::operator+(const CTree& other) {
 
 void CTree::operator=(const CTree& other) {
     if (this != &other) {
-        cout << "operator= " << endl;
         if (root != nullptr) {
             deleteTree(root);
         }
         root = copyTree(other.root);
     }
-    //return *this;
+    cout << message_operatorEqual << ++copyCountOperatorEqual << endl;
 }
 
-void CTree::operator=(CTree&& other) {
-    cout << "Move operator= " << endl;
-    if (root != nullptr) deleteTree(root);
-    root = copyTree(other.root);
-};
+//void CTree::operator=(CTree&& other) {
+//    if (root != nullptr) deleteTree(root);
+//    root = copyTree(other.root);
+//};
 
 // Funkcja do wypisywania drzewa w notacji prefiksowej
 void CTree::printTree(CNode* node) {

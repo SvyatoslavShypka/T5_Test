@@ -98,9 +98,6 @@ int main() {
             //tree += newTree;
             tree = tree + newTree;
             cout << message_merged_tree << endl;
-
-            //cout << copyCountCopyConstructor << endl;
-
         }
         else if (cmd == command_exit) {
             cout << command_exit << endl;

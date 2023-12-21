@@ -41,6 +41,8 @@ const string message_parsed = "Expression entered and parsed.";
 const string message_deleted_tree = "Tree was deleted";
 const string message_merged_tree = "Tree was merged";
 const string message_levels = "levels";
+const string message_operatorEqual = "operator= : ";
+const string message_copy_constructor = "Copy constructor: ";
 const string op_plus = "+";
 const string op_minus = "-";
 const string op_multiply = "*";
