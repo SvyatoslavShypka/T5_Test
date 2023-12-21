@@ -21,7 +21,9 @@ CTree::CTree(const CTree& other) {
 
 CTree::~CTree() {
     cout << "Destructor " << endl;
+    if (root != nullptr) {
     deleteTree(root);
+    }
 }
 
 CNode* CTree::getRoot() const {
@@ -30,6 +32,7 @@ CNode* CTree::getRoot() const {
 
 CTree& CTree::operator=(const CTree& other) {
     if (this != &other) {
+        cout << "operator= " << endl;
         deleteTree(root);
         root = copyTree(other.root);
     }
@@ -236,15 +239,18 @@ CNode* CTree::mergeTrees(CNode* left, CNode* right) {
 }
 
 // Przeciążony operator +=
-CTree& CTree::operator+=(const CTree& other) {
-    root = mergeTrees(root, other.root);
-    return *this;
-}
+//CTree& CTree::operator+=(const CTree& other) {
+//    root = mergeTrees(root, other.root);
+//    return *this;
+//}
 
 // Przeciążony operator +
-CTree& CTree::operator+(const CTree& other) {
-    root = mergeTrees(root, other.root);
-    return *this;
+CTree CTree::operator+(const CTree& other) {
+    CTree result(*this);
+
+    result.root = mergeTrees(root, other.root);
+    
+    return move(result);
 }
 
 
