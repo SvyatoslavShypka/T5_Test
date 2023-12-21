@@ -18,11 +18,8 @@ void readValues(stringstream& ss, vector<double>& values) {
 }
 
 int main() {
-    //CTree c_tree;
-    //CTree c_other;
 
     CTree tree;
-    //c_other = tree;
 
     while (true) {
         cout << message_enter;
@@ -100,11 +97,18 @@ int main() {
             newTree.parseExpression(formula);
             //tree += newTree;
             tree = tree + newTree;
-            //newTree = nullptr;
             cout << message_merged_tree << endl;
+
+            //cout << copyCountCopyConstructor << endl;
+
         }
         else if (cmd == command_exit) {
             cout << command_exit << endl;
+            //tree.deleteTree(tree.getRoot());
+            /*CTree result(tree);
+
+            result.root = mergeTrees(root, other.root);
+            root = nullptr;*/
             return 0;
         }
         else if (cmd == message_levels) {

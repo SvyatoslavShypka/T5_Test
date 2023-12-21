@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <iostream>
 #include <map>
 #include <set>
@@ -35,8 +36,8 @@ public:
 
     CNode* getRoot() const;
 
-    CTree& operator=(const CTree& other);
-    CTree operator=(CTree&& other);
+    void operator=(const CTree& other);
+    void operator=(CTree&& other);
     CTree operator+(const CTree& other);
 
     void createTree(CNode* currentNode, const string& expression, size_t& offset);

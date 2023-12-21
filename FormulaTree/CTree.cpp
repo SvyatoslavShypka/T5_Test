@@ -7,6 +7,9 @@
 #include <queue>
 using namespace std;
 
+int copyCountCopyConstructor = 0;
+int copyCountOperatorEqual = 0;
+
 CTree::CTree()
 {
     cout << "Default constructor " << endl;
@@ -17,6 +20,7 @@ CTree::CTree(const CTree& other) {
     root = new CNode(*other.root);
 
     cout << "Copy constructor " << endl;
+    copyCountCopyConstructor++;
     //GLOBAL_CONSTRUCTOR_COPY_COUNTER++;
 }
 
@@ -24,7 +28,7 @@ CTree::~CTree() {
     cout << "Destructor " << endl;
     if (root != nullptr) {
     deleteTree(root);
-    root = nullptr;
+    //root = nullptr;
     }
 }
 
@@ -32,7 +36,17 @@ CNode* CTree::getRoot() const {
     return root;
 }
 
-CTree& CTree::operator=(const CTree& other) {
+// Przeciążony operator +
+CTree CTree::operator+(const CTree& other) {
+    CTree result(*this);
+
+    result.root = mergeTrees(root, other.root);
+    root = nullptr;
+    
+    return move(result);
+}
+
+void CTree::operator=(const CTree& other) {
     if (this != &other) {
         cout << "operator= " << endl;
         if (root != nullptr) {
@@ -40,16 +54,13 @@ CTree& CTree::operator=(const CTree& other) {
         }
         root = copyTree(other.root);
     }
-    return *this;
+    //return *this;
 }
 
-CTree CTree::operator=(CTree&& other) {
+void CTree::operator=(CTree&& other) {
     cout << "Move operator= " << endl;
-    if (root != nullptr) delete root;
-    root = other.root;
-    //delete other.root;
-    //other.root = NULL;
-    return(*this);
+    if (root != nullptr) deleteTree(root);
+    root = copyTree(other.root);
 };
 
 // Funkcja do wypisywania drzewa w notacji prefiksowej
@@ -256,16 +267,6 @@ CNode* CTree::mergeTrees(CNode* left, CNode* right) {
 //    root = mergeTrees(root, other.root);
 //    return *this;
 //}
-
-// Przeciążony operator +
-CTree CTree::operator+(const CTree& other) {
-    CTree result(*this);
-
-    result.root = mergeTrees(root, other.root);
-    root = nullptr;
-    
-    return move(result);
-}
 
 
 
