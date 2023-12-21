@@ -19,16 +19,11 @@ void readValues(stringstream& ss, vector<double>& values) {
 
 int main() {
     //CTree c_tree;
-    CTree c_other;
+    //CTree c_other;
 
     CTree tree;
-    c_other = tree;
+    //c_other = tree;
 
-    /*initialize c_tree, c_other*/
-    //c_other = std::move(tree);
-
-
-/*
     while (true) {
         cout << message_enter;
         string command;
@@ -87,9 +82,7 @@ int main() {
         }
         else if (cmd == command_enter) {
             string formula;
-            // TODO test
-            formula = "+ * 5 sin x * + a b 8";
-            //getline(ss, formula);
+            getline(ss, formula);
 
             formula = tree.correctFormula(formula);
 
@@ -105,7 +98,8 @@ int main() {
             string formula;
             getline(ss, formula);
             newTree.parseExpression(formula);
-            tree += newTree;
+            //tree += newTree;
+            tree = tree + newTree;
             cout << message_merged_tree << endl;
         }
         else if (cmd == command_exit) {
@@ -116,6 +110,5 @@ int main() {
             tree.wierszTree(tree.getRoot());
         }
     }
- */
     return 0;
 }

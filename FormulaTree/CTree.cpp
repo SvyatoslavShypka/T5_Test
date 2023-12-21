@@ -6,14 +6,21 @@
 #include <sstream>
 #include <queue>
 using namespace std;
+
 CTree::CTree()
 {
     cout << "Default constructor " << endl;
     root = nullptr;
 }
 
+CTree::CTree(const CTree& other) {
+    root = other.root;
+    cout << "Copy constructor " << endl;
+    //GLOBAL_CONSTRUCTOR_COPY_COUNTER++;
+}
+
 CTree::~CTree() {
-    cout << "Desttructor " << endl;
+    cout << "Destructor " << endl;
     deleteTree(root);
 }
 
@@ -233,6 +240,14 @@ CTree& CTree::operator+=(const CTree& other) {
     root = mergeTrees(root, other.root);
     return *this;
 }
+
+// Przeciążony operator +
+CTree& CTree::operator+(const CTree& other) {
+    root = mergeTrees(root, other.root);
+    return *this;
+}
+
+
 
 string CTree::correctFormula(string expression)
 {

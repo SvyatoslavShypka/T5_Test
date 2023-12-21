@@ -5,12 +5,18 @@
 #include <set>
 using namespace std;
 
+//int GLOBAL_CONSTRUCTOR_COPY_COUNTER = 0;
+//int GLOBAL_OPERATOR_COPY_COUNTER = 0;
+
 class CNode;
 
+//int copyCountOperatorPlus = 0;
+//int copyCountOperatorEqual = 0;
+
 class CTree {
-    static int i_copyCount;
+    //static int i_copyCount;
 private:
-    CNode* root;
+    CNode* root = nullptr;
 
     CNode* parseNode(const string& expression, size_t& offset);
 
@@ -18,30 +24,28 @@ public:
     CNode* copyTree(const CNode* source);
     void deleteTree(CNode* node);
     CTree();
-    CTree(const CTree& c_tree) {
-        //cout << "Copy constructor " << ++i_copyCount << endl;
-        cout << "Copy constructor " << endl;
-    };
+    CTree(const CTree& other);
 
-    CTree(const CTree&& c_tree) {
-        //cout << "Move constructor " << ++i_copyCount << endl;
-        cout << "Move constructor " << endl;
-    };
+    //CTree(const CTree&& c_tree) {
+    //    //cout << "Move constructor " << ++i_copyCount << endl;
+    //    cout << "Move constructor " << endl;
+    //};
 
     ~CTree();
 
     CNode* getRoot() const;
 
     CTree& operator=(const CTree& other);
-    CTree operator=(CTree&& other) {
-        //cout << "Move operator= " << ++i_copyCount << endl;
-        cout << "Move operator= " << endl;
-        root = other.root;
-        
-        other.root = NULL;
-        return(*this);
-    };
+    //CTree operator=(CTree&& other) {
+    //    //cout << "Move operator= " << ++i_copyCount << endl;
+    //    cout << "Move operator= " << endl;
+    //    root = other.root;
+    //    
+    //    other.root = NULL;
+    //    return(*this);
+    //};
     CTree& operator+=(const CTree& other);
+    CTree& operator+(const CTree& other);
 
     void createTree(CNode* currentNode, const string& expression, size_t& offset);
     void printTree(CNode* node);
