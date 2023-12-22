@@ -21,14 +21,14 @@ template <typename T>
 void CMySmartPointer<T>::copy(const CMySmartPointer<T>& other) {
 	this->pointer = other.pointer;
 	this->counter = other.counter;
-	this->counter->increment();
+	this->counter->iAdd();
 }
 
 template<typename T>
 CMySmartPointer<T>::CMySmartPointer(T* pointer) {
 	this->pointer = pointer;
 	this->counter = new CRefCounter;
-	this->counter->increment();
+	this->counter->iAdd();
 }
 
 template <typename T>
@@ -38,7 +38,7 @@ CMySmartPointer<T>::CMySmartPointer(const CMySmartPointer<T>& other) {
 
 template <typename T>
 CMySmartPointer<T>::~CMySmartPointer() {
-	if (counter->decrement() == 0) {
+	if (counter->iDec() == 0) {
 		delete pointer;
 		delete counter;
 	}
@@ -47,7 +47,7 @@ CMySmartPointer<T>::~CMySmartPointer() {
 template <typename T>
 void CMySmartPointer<T>::operator=(const CMySmartPointer<T>& other) {
 	if (pointer != other.pointer) {
-		if (counter->decrement() == 0) {
+		if (counter->iDec() == 0) {
 			delete pointer;
 			delete counter;
 		}
