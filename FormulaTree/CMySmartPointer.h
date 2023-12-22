@@ -1,5 +1,14 @@
 #pragma once
 class CRefCounter;
+class CRefCounter {
+private:
+	int i_count;
+public:
+	CRefCounter() { i_count = 0; }
+	int iAdd() { return ++i_count; }
+	int iDec() { return --i_count; }
+	int iGet() { return i_count; }
+};
 template  <typename T> class CMySmartPointer {
 private:
 	T* pointer;
@@ -27,7 +36,7 @@ void CMySmartPointer<T>::copy(const CMySmartPointer<T>& other) {
 template<typename T>
 CMySmartPointer<T>::CMySmartPointer(T* pointer) {
 	this->pointer = pointer;
-	this->counter = new CRefCounter;
+	this->counter = new CRefCounter();
 	this->counter->iAdd();
 }
 
@@ -54,13 +63,3 @@ void CMySmartPointer<T>::operator=(const CMySmartPointer<T>& other) {
 	}
 	copy(other);
 }
-
-class CRefCounter {
-private:
-	int i_count;
-public:
-	CRefCounter() { i_count = 0; }
-	int iAdd() { return ++i_count; }
-	int iDec() { return --i_count; }
-	int iGet() { return i_count; }
-};

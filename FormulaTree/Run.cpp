@@ -20,9 +20,9 @@ void readValues(stringstream& ss, vector<double>& values) {
 
 int main() {
     
-    int* x;
+    int* x = new int;
     *x = 5;
-    int* y;
+    int* y = new int;
     *y = 6;
     CMySmartPointer<int> firstSP(x);
     CMySmartPointer<int> secondSP(y);
