@@ -6,6 +6,7 @@
 #include <set>
 #include "CNode.h"
 #include "CTree.h"
+#include "CMySmartPointer.h"
 
 using namespace std;
 
@@ -18,6 +19,12 @@ void readValues(stringstream& ss, vector<double>& values) {
 }
 
 int main() {
+    
+    int* x;
+    int* y;
+    CMySmartPointer<int> firstSP(x);
+    CMySmartPointer<int> secondSP(y);
+    firstSP = secondSP;
 
     CTree tree;
 
