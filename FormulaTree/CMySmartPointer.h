@@ -28,16 +28,16 @@ public:
 
 template <typename T>
 void CMySmartPointer<T>::copy(const CMySmartPointer<T>& other) {
-	this->pointer = other.pointer;
-	this->counter = other.counter;
-	this->counter->iAdd();
+	pointer = other.pointer;
+	counter = other.counter;
+	counter->iAdd();
 }
 
 template<typename T>
 CMySmartPointer<T>::CMySmartPointer(T* pointer) {
-	this->pointer = pointer;
-	this->counter = new CRefCounter();
-	this->counter->iAdd();
+	pointer = pointer;
+	counter = new CRefCounter();
+	counter->iAdd();
 }
 
 template <typename T>
