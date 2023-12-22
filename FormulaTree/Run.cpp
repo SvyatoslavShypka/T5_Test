@@ -21,7 +21,9 @@ void readValues(stringstream& ss, vector<double>& values) {
 int main() {
     
     int* x;
+    *x = 5;
     int* y;
+    *y = 6;
     CMySmartPointer<int> firstSP(x);
     CMySmartPointer<int> secondSP(y);
     firstSP = secondSP;
