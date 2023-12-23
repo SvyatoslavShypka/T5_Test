@@ -24,6 +24,7 @@ int main() {
     int* x = new int;
 
     *x = 5;
+
     int* y = new int;
     *y = 6;
     CMySmartPointer<int> firstSP(x);
