@@ -14,6 +14,7 @@ using namespace std;
 void readValues(stringstream& ss, vector<double>& values) {
     double value;
     while (ss >> value) {
+
         values.push_back(value);
     }
 }
