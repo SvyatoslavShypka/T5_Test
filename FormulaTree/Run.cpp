@@ -22,6 +22,7 @@ void readValues(stringstream& ss, vector<double>& values) {
 int main() {
     
     int* x = new int;
+
     *x = 5;
     int* y = new int;
     *y = 6;
